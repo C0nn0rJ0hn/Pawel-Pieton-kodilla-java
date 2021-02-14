@@ -8,17 +8,23 @@ public class ShapeCollectorTestSuite {
     private static int testCounter = 0;
 
     @BeforeAll
-    public void beforeAllTests()
+    public static void beforeAllTests()
     {
         System.out.println("Begining of tests");
         System.out.println();
     }
 
     @AfterAll
-    public void afterAllTests()
+    public static void afterAllTests()
     {
         System.out.println("All tests are finished");
     }
+
+    Shape circle = new Circle(10);
+    Shape rectangle = new Rectangle(10, 5);
+    Shape square = new Square(7);
+
+    ShapeCollector shapeCollector = new ShapeCollector();
 
     @BeforeEach
     public void beforeEachTest()
@@ -26,87 +32,65 @@ public class ShapeCollectorTestSuite {
         testCounter++;
         System.out.println("Preapering to execute test #" + testCounter);
         System.out.println();
-    }
-
-    @DisplayName("Add figure to the list")
-    @Test
-    void testAddFigure()
-    {
-        //Given
-        Shape circle = new Circle(10);
-        Shape rectangle = new Rectangle(10, 5);
-        Shape square = new Square(7);
-
-        ShapeCollector shapeCollector = new ShapeCollector();
-
-
-        //When
-        shapeCollector.addFigure(circle);
-        shapeCollector.addFigure(rectangle);
-        shapeCollector.addFigure(square);
-
-
-        //Then
-        Assertions.assertEquals(3, shapeCollector.shapeList.size());
-    }
-
-    @DisplayName("Remove figure from the list")
-    @Test
-    void testRemoveFigure()
-    {
-        //Given
-        ShapeCollector shapeCollector = new ShapeCollector();
-        Shape circle = new Circle(10);
-
-
-        //When
-        shapeCollector.removeFigure(circle);
-
-        //Then
-        Assertions.assertEquals(0, shapeCollector.shapeList.size());
-    }
-
-    @DisplayName("Get figure from the list")
-    @Test
-    void testGetFigure()
-    {
-        //Given
-        ShapeCollector shapeCollector = new ShapeCollector();
-
-        Shape circle = new Circle(10);
-        Shape rectangle = new Rectangle(10, 5);
-        Shape square = new Square(7);
-
-        //When
-        shapeCollector.getFigure(2);
 
         shapeCollector.addFigure(circle);
         shapeCollector.addFigure(rectangle);
         shapeCollector.addFigure(square);
-
-        //Then
-        Assertions.assertEquals(shapeCollector.shapeList.get(1), shapeCollector.getFigure(1));
     }
 
-    @DisplayName("Show all figures in the list")
-    @Test
-    void testShowFigures()
-    {
-        //Given
-        ShapeCollector shapeCollector = new ShapeCollector();
+    @Nested
+    @DisplayName("Test shapes")
+    class TestShapes {
+        @DisplayName("Add figure to the list")
+        @Test
+        void testAddFigure() {
+            //Given
+            Shape circle2 = new Circle(5);
 
-        Shape circle = new Circle(10);
-        Shape rectangle = new Rectangle(10, 5);
-        Shape square = new Square(7);
+            //When
+            shapeCollector.addFigure(circle2);
 
-        //When
-        shapeCollector.showFigures();
+            //Then
+            Assertions.assertEquals(4, shapeCollector.shapeList.size());
+        }
 
-        shapeCollector.addFigure(circle);
-        shapeCollector.addFigure(rectangle);
-        shapeCollector.addFigure(square);
+        @DisplayName("Remove figure from the list")
+        @Test
+        void testRemoveFigure() {
+            //Given
 
-        //Then
-        Assertions.assertEquals("Circle, Rectangle, Square", shapeCollector.showFigures());
+
+            //When
+            shapeCollector.removeFigure(circle);
+
+            //Then
+            Assertions.assertEquals(2, shapeCollector.shapeList.size());
+        }
+
+        @DisplayName("Get figure from the list")
+        @Test
+        void testGetFigure() {
+            //Given
+
+
+            //When
+            shapeCollector.getFigure(1);
+
+            //Then
+            Assertions.assertEquals(shapeCollector.shapeList.get(1), shapeCollector.getFigure(1));
+        }
+
+        @DisplayName("Show all figures in the list")
+        @Test
+        void testShowFigures() {
+            //Given
+
+
+            //When
+            shapeCollector.showFigures();
+
+            //Then
+
+        }
     }
 }
