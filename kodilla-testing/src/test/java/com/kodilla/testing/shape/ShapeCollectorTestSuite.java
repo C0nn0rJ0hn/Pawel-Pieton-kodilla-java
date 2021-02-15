@@ -2,10 +2,14 @@ package com.kodilla.testing.shape;
 
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @DisplayName("Shape Collector Test Suite")
 public class ShapeCollectorTestSuite {
 
     private static int testCounter = 0;
+    ShapeCollector shapeCollector = new ShapeCollector();
 
     @BeforeAll
     public static void beforeAllTests()
@@ -20,11 +24,6 @@ public class ShapeCollectorTestSuite {
         System.out.println("All tests are finished");
     }
 
-    Shape circle = new Circle(10);
-    Shape rectangle = new Rectangle(10, 5);
-    Shape square = new Square(7);
-
-    ShapeCollector shapeCollector = new ShapeCollector();
 
     @BeforeEach
     public void beforeEachTest()
@@ -33,9 +32,13 @@ public class ShapeCollectorTestSuite {
         System.out.println("Preapering to execute test #" + testCounter);
         System.out.println();
 
-        shapeCollector.addFigure(circle);
-        shapeCollector.addFigure(rectangle);
-        shapeCollector.addFigure(square);
+        Shape circle = new Circle(10);
+        Shape rectangle = new Rectangle(10, 5);
+        Shape square = new Square(7);
+
+        shapeCollector.shapeList.add(circle);
+        shapeCollector.shapeList.add(rectangle);
+        shapeCollector.shapeList.add(square);
     }
 
     @Nested
@@ -61,7 +64,7 @@ public class ShapeCollectorTestSuite {
 
 
             //When
-            shapeCollector.removeFigure(circle);
+            shapeCollector.removeFigure(shapeCollector.shapeList.get(0));
 
             //Then
             Assertions.assertEquals(2, shapeCollector.shapeList.size());
@@ -88,8 +91,10 @@ public class ShapeCollectorTestSuite {
 
             //When
             shapeCollector.showFigures();
+            String expectedResult = "Circle, Rectangle, Square";
 
             //Then
+            Assertions.assertEquals(expectedResult, shapeCollector.showFigures());
 
         }
     }
