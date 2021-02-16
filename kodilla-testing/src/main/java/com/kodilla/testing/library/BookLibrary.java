@@ -30,4 +30,19 @@ public class BookLibrary {
 
         return booksInHandOf;
     }
+
+    public boolean rentABook(LibraryUser libraryUser, Book book)
+    {
+        boolean booksToRent = libraryDatabase.rentABook(libraryUser, book);
+        return booksToRent;
+
+    }
+
+    public int returnBooks(LibraryUser libraryUser)
+    {
+
+        int result = libraryDatabase.returnBooks(libraryUser);
+
+        return result;
+    }
 }
