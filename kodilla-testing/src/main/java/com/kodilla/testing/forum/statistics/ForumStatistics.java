@@ -1,16 +1,32 @@
 package com.kodilla.testing.forum.statistics;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ForumStatistics {
 
+    public List<String> usersList;
+    public int postsCount;
+    public int commentsCount;
     private Statistics statistics;
 
     public ForumStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
 
-    public List<String> usersNames()
+    public List<String> getUsersList() {
+        return usersList;
+    }
+
+    public int getPostsCount() {
+        return postsCount;
+    }
+
+    public int getCommentsCount() {
+        return commentsCount;
+    }
+
+    /*public List<String> usersNames()
     {
         List<String> usersList;
 
@@ -29,9 +45,9 @@ public class ForumStatistics {
     {
         int comments = statistics.commentsCount();
         return  comments;
-    }
+    }*/
 
-    public double averagePostsForUser()
+    /*public double averagePostsForUser()
     {
         return statistics.postsCount()/statistics.usersNames().size();
     }
@@ -44,5 +60,11 @@ public class ForumStatistics {
     public double averageCommentsForPost()
     {
         return  statistics.commentsCount()/statistics.postsCount();
+    }*/
+
+    public void calculateAdvStatistics(Statistics statistics)
+    {
+        usersList = statistics.usersNames();
     }
 }
+

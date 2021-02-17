@@ -1,7 +1,5 @@
 package com.kodilla.testing.forum.statistics;
 
-
-import com.kodilla.testing.forum.ForumPost;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -49,7 +47,7 @@ public class ForumStatisticsTestSuite {
     {
         List<String> forumUsersNames = new ArrayList<>();
 
-        for(int j = 0; j <= 30; j++)
+        for(int j = 0; j < namesQuantity; j++)
         {
             forumUsersNames.add(j,"User");
         }
@@ -81,28 +79,34 @@ public class ForumStatisticsTestSuite {
 
     @Mock private Statistics statisticsMock;
 
-    @DisplayName("Test - Number of users")
+    /*@DisplayName("Test - Number of users")
     @Test
     void testNUmberOfUsers()
     {
         //Given
         ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        forumStatistics.calculateAdvStatistics(statisticsMock);
 
 
-        when(statisticsMock.usersNames()).thenReturn(allUserNames);
+
+        when(statisticsMock.usersNames()).thenReturn(forumStatistics.getUsersList());
+
 
         //When
-        List<String> theListOfUsers = forumStatistics.usersNames();
+        forumStatistics.getUsersList();
+
+
 
         //Then
-        Assertions.assertEquals(allUserNames.size(), theListOfUsers.size());
+        Assertions.assertEquals(allUserNames.size(), forumStatistics.getUsersList().size());
+
     }
 
     @Test
     void testNumberOfPosts()
     {
         //Given
-        ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+        ForumStatistics forumStatistics = new ForumStatistics();
 
         when(statisticsMock.postsCount()).thenReturn(allPosts.size());
 
@@ -133,6 +137,7 @@ public class ForumStatisticsTestSuite {
     {
         //Given
         ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
+
 
         //When
         double averagePostUser = forumStatistics.averagePostsForUser();
@@ -165,6 +170,6 @@ public class ForumStatisticsTestSuite {
 
         //Then
         Assertions.assertEquals(2, averageCommentPost);
-    }
+    }*/
 
 }
