@@ -13,7 +13,7 @@ public class ClassicGame
 
     public void mainProgramClassic()
     {
-        int roundCount = 0;                                     //how much round was played
+        int roundCount = 0;
         int playerScore = 0;
         int compScore = 0;
         int winRounds = GameMenus.numberOfWiningGames;
