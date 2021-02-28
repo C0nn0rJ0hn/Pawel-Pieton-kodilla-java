@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class FlightSearch
 {
-    Map<String, Boolean> flightMap;
+    private Map<String, Boolean> flightMap;
 
     public FlightSearch(Map<String, Boolean> flightMap) {
         this.flightMap = flightMap;
