@@ -26,12 +26,13 @@ public class GameMenus
     {
         System.out.println("Please choose the game You wish to play: " + "\nPress \"C\" for classic game" +
                 " and \"E\" for extended game.");
-        gameChoice = input.next().charAt(0);
+        gameChoice = input.next().toUpperCase().charAt(0);
+
     }
 
     public void gameMenu()
     {
-        if(gameChoice == 'c' || gameChoice == 'C')
+        if(gameChoice == 'C')
         {
             System.out.println("You chose the classic version of the game");
             System.out.println("Here are the rules:" + "\n- Rock crushes Scissors" + "\n- Scissors cuts Paper" + "\n- Paper covers Rock");
@@ -42,7 +43,7 @@ public class GameMenus
             ClassicGame classicGame = new ClassicGame();
             classicGame.mainProgramClassic();
         }
-        else if(gameChoice == 'e' || gameChoice == 'E')
+        else if(gameChoice == 'E')
         {
             System.out.println("You chose the extended version of the game");
             System.out.println("Here are the rules:" + "\n- Scissors cuts Paper" + "\n- Paper covers Rock" + "\n- Rock crushes Lizard" +
