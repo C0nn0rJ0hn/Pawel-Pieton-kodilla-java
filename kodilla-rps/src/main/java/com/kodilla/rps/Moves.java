@@ -6,24 +6,6 @@ import java.util.Scanner;
 public class Moves
 {
     //1 - Rock, 2 - Paper, 3 - Scissors
-    public enum GestureClassic
-    {
-        Rock(1),
-        Paper(2),
-        Scissors(3);
-
-        private int type;
-
-        GestureClassic(int type)
-        {
-            this.type = type;
-        }
-
-        public int getType() {
-            return type;
-        }
-    }
-
     Random r = new Random();
     boolean end = false;
 
