@@ -1,9 +1,9 @@
-package com.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges.food2door;
 
 public class User
 {
-    String name;
-    String surname;
+    private String name;
+    private String surname;
 
     public User(String name, String surname) {
         this.name = name;
