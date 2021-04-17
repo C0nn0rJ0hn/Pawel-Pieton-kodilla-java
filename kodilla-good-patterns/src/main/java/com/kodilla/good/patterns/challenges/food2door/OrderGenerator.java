@@ -25,4 +25,15 @@ public class OrderGenerator
 
         return new Order(user, contractor, product, orderNumber);
     }
+
+    public Order retrieve3()
+    {
+        User user = new User("John", "Connor");
+        Product product = new Product("Product7", 200);
+        Contractor contractor = new Contractor("Gluten Free Shop", "ul. Nowotarska 1, Rabka Zdroj");
+        Random r = new Random();
+        int orderNumber = r.nextInt(10000);
+
+        return new Order(user, contractor, product, orderNumber);
+    }
 }

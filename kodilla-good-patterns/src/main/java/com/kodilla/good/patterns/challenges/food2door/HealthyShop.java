@@ -6,7 +6,8 @@ import java.util.List;
 public class HealthyShop implements OrderRealization
 {
     private List<Product> productList = new ArrayList<>();
-    private boolean productAvailable;
+    private boolean isAvailable;
+    private int index;
 
     public HealthyShop()
     {
@@ -28,25 +29,27 @@ public class HealthyShop implements OrderRealization
 
         for (int i = 0; i < productList.size(); i ++)
         {
-            if (productList.get(i).getName().equals(product.getName()) && productList.get(i).getAvailableQuantity() >= product.getAvailableQuantity())
+            if (product.getName().equals(productList.get(i).getName()))
             {
-                System.out.println("We have this product in our shop with required quantity");
-                System.out.println();
-                productAvailable = true;
-            }
-            else if (productList.get(i).getName().equals(product.getName()) && productList.get(i).getAvailableQuantity() < product.getAvailableQuantity())
-            {
-                System.out.println("We have this product in our shop, but with insufficient quantity");
-                System.out.println();
-                productAvailable = false;
-            }
-            else
-            {
-                System.out.println("Sorry. We do not have this product in our shop");
-                System.out.println();
-                productAvailable = false;
+                index = i;
+                isAvailable = true;
+                break;
             }
         }
-        return productAvailable;
+        if (productList.get(index).getAvailableQuantity() >= product.getAvailableQuantity() && isAvailable)
+        {
+            System.out.println("We have this product in our shop with required quantity");
+            System.out.println();
+            return true;
+        }
+        else if (productList.get(index).getAvailableQuantity() < product.getAvailableQuantity() && isAvailable)
+        {
+            System.out.println("We have this product in our shop, but with insufficient quantity");
+            System.out.println();
+            return false;
+        }
+        System.out.println("Sorry. We do not have this product in our shop");
+        System.out.println();
+        return false;
     }
 }
