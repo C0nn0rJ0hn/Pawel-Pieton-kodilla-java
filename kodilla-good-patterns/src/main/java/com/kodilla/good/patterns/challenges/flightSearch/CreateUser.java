@@ -8,7 +8,8 @@ public class CreateUser
         String surname = "Connor";
         String departureAirport = "krakow";
         String arrivalAirport = "katowice";
+        String oneStopConnection = "wroclaw";
 
-        return new User(name, surname, new Airport(departureAirport, arrivalAirport));
+        return new User(name, surname, new Airport(departureAirport, arrivalAirport), oneStopConnection);
     }
 }

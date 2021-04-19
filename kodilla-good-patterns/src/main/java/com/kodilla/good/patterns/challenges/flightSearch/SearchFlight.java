@@ -28,6 +28,7 @@ public class SearchFlight
                 .map(e -> e.getValue())
                 .filter(e -> e.getDepartureAirport().equals(user.getAirport().getDepartureAirport().toUpperCase()) || e.getArrivalAirport()
                         .equals(user.getAirport().getArrivalAirport().toUpperCase()))
+                .filter(e -> e.getDepartureAirport().equals(user.getOneStopConnection().toUpperCase()) || e.getArrivalAirport().equals(user.getOneStopConnection().toUpperCase()))
                 .map(e -> "Departure from: " + e.getDepartureAirport() + " ---> " + "Arrival to: " + e.getArrivalAirport())
                 .forEach(System.out::println);
     }
