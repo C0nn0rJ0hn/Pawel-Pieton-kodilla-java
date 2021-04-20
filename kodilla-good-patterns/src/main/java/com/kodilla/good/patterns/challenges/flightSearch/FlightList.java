@@ -29,4 +29,9 @@ public class FlightList
     public Map<Integer, Airport> getFlightList() {
         return flightList;
     }
+
+    public void test()
+    {
+
+    }
 }
