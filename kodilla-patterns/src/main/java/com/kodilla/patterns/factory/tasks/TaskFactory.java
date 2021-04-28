@@ -6,7 +6,7 @@ public final class TaskFactory
     public static final String PAINTING = "PAINTING";
     public static final String DRIVING = "DRIVING";
 
-    public final Task makeTask(final String taskClass)
+    public final Task makeTask(final String taskClass) throws Exception
     {
         switch (taskClass)
         {
@@ -17,7 +17,7 @@ public final class TaskFactory
             case DRIVING:
                 return new DrivingTask("Driving", "Barcelona", "car");
             default:
-                return null;
+                throw new Exception("There is no such case");
         }
     }
 }

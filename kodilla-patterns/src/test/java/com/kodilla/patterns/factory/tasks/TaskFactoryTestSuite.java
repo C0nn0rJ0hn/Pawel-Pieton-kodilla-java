@@ -16,8 +16,7 @@ public class TaskFactoryTestSuite
 
     @Test
     @DisplayName("Test Shopping Task")
-    void testShoppingTaskFactory()
-    {
+    void testShoppingTaskFactory() throws Exception {
         //Given
         TaskFactory factory = new TaskFactory();
 
@@ -32,8 +31,7 @@ public class TaskFactoryTestSuite
 
     @Test
     @DisplayName("Test Painting Task")
-    void testPaintingTaskFactory()
-    {
+    void testPaintingTaskFactory() throws Exception {
         //Given
         TaskFactory factory = new TaskFactory();
 
@@ -48,8 +46,7 @@ public class TaskFactoryTestSuite
 
     @Test
     @DisplayName("Test Driving Task")
-    void testDrivingTaskFactory()
-    {
+    void testDrivingTaskFactory() throws Exception {
         //Given
         TaskFactory factory = new TaskFactory();
 
@@ -60,5 +57,21 @@ public class TaskFactoryTestSuite
         //Then
         Assertions.assertEquals("Driving", driving.getTaskName());
         Assertions.assertEquals(true, driving.isTaskExecuted());
+    }
+
+    @Test
+    @DisplayName("Test Exception")
+    void testException()
+    {
+        //Given
+        TaskFactory factory = new TaskFactory();
+
+        //When & Then
+        try {
+            Task working = factory.makeTask("Working");
+            working.executeTask();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
