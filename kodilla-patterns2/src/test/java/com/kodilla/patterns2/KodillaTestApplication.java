@@ -8,6 +8,5 @@ public class KodillaTestApplication {
 
     @Test
     public void contextLoad() {
-
     }
 }
