@@ -2,7 +2,7 @@ package com.kodilla.patterns2.decorator.pizza;
 
 import java.math.BigDecimal;
 
-public class BasicPizzaOrder implements PizzaOrder{
+public class Margherita implements Pizza {
     @Override
     public BigDecimal getCost() {
         return new BigDecimal(15);
@@ -10,6 +10,6 @@ public class BasicPizzaOrder implements PizzaOrder{
 
     @Override
     public String getDescription() {
-        return "Basic pizza(tomato sauce and cheese)";
+        return "Margherita(tomato sauce and mozzarella cheese)";
     }
 }
