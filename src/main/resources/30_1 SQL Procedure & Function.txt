@@ -1,0 +1,21 @@
+drop procedure if exists SearchReaders;
+delimiter $$
+create procedure SearchReaders(readerId int)
+begin
+    if readerId <= 0 then
+        select ReaderFailed() as ReaderFailed;
+    else
+        select FIRSTNAME, LASTNAME from READERS where READER_ID = readerId;
+    end if;
+end $$
+delimiter ;
+call SearchReaders(4);
+
+drop function if exists ReaderFailed;
+delimiter $$
+create function ReaderFailed() returns varchar(255)
+begin
+    return 'Invalid reader id. Please choose number above 0';
+end $$
+delimiter ;
+select ReaderFailed() as ReaderFailed;
