@@ -1,0 +1,39 @@
+alter table BOOKS add BESTSELLER boolean default 0;
+
+drop function if exists isBestseller;
+delimiter $$
+create function isBestseller(countBooks int) returns boolean deterministic
+begin
+    if(countBooks > 2) then return true;
+    else return false;
+    end if;
+end $$
+delimiter ;
+select isBestseller(2);
+
+
+drop procedure if exists UpdateBestsellers;
+delimiter $$
+create procedure UpdateBestsellers()
+begin
+    declare FINISHED int default 0;
+    declare BK_ID, COUNT_RENT int;
+    declare ALL_BOOKS cursor for select BOOK_ID from BOOKS;
+    declare continue handler for not found set FINISHED = 1;
+
+    open ALL_BOOKS;
+    while (FINISHED = 0) do
+        fetch ALL_BOOKS into BK_ID;
+        if (FINISHED = 0) then
+            select count(*) from RENTS where BOOK_ID = BK_ID into COUNT_RENT;
+            update BOOKS set BESTSELLER = isBestseller(COUNT_RENT) where BOOK_ID = BK_ID;
+            commit;
+        end if;
+    end while;
+    close ALL_BOOKS;
+
+end $$
+delimiter ;
+call UpdateBestsellers();
+select * from BOOKS;
+
