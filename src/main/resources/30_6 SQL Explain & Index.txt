@@ -1,0 +1,5 @@
+explain select FIRSTNAME, LASTNAME from READERS where FIRSTNAME = 'John';
+create index READER_NAMES on READERS (FIRSTNAME, LASTNAME);
+explain select FIRSTNAME, LASTNAME from READERS where FIRSTNAME = 'John';
+
+create index BOOK_TITLE on BOOKS (TITLE);
