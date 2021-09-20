@@ -15,8 +15,6 @@ public class FacebookTestingApp {
     public static final String XPATH_FILL_MONTH = "//select[contains(@name, \"birthday_month\")]";
     public static final String XPATH_FILL_YEAR = "//select[contains(@name, \"birthday_year\")]";
 
-
-
     public static void main(String[] args) {
         WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
         driver.get("https://www.facebook.com/");
