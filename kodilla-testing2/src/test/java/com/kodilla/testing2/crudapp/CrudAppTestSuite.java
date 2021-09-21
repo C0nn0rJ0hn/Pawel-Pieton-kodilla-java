@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.Base64;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class CrudAppTestSuite {
     private static final String BASE_URL = "https://c0nn0rj0hn.github.io";
@@ -101,10 +102,29 @@ public class CrudAppTestSuite {
         return result;
     }
 
+    void deleteTaskFromCrudApp(String taskName) throws InterruptedException {
+        Thread.sleep(2000);
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(task -> task.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]")).getText().equals(taskName))
+                .forEach(theTask -> {
+                    WebElement deleteButton = theTask.findElement(By.xpath(".//button[4]"));
+                    deleteButton.click();
+                });
+
+    }
+
+    boolean checkTaskExistsInCrudApp(String taskName) throws InterruptedException {
+        Thread.sleep(2000);
+        return driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .noneMatch(task -> task.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]")).getText().equals(taskName));
+    }
+
     @Test
     void shouldCreateTrelloCard() throws InterruptedException {
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
         assertTrue(checkTaskExistsInTrello(taskName));
+        deleteTaskFromCrudApp(taskName);
+        assertTrue(checkTaskExistsInCrudApp(taskName));
     }
 }
